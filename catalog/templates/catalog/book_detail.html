@@ -2,13 +2,15 @@
 {% load i18n %}
 {% load static %}
 {% block content %}
+<div>
   <h1>{% trans "Title" %}: {{ book.title }}</h1>
-  
-  <p><strong>{% trans "Author" %}: </strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+  <h1> {{book.image_of_bool.url}}</h1>
+  <p><strong>{% trans "Author" %}: </strong> <a href="{{ book.author.get_absolute_url }}" >{{ book.author }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>{% trans "Summary" %}: </strong> {{ book.summary }}</p>
   <p><strong>{% trans "ISBN" %} : </strong> {{ book.isbn }}</p>
   <p><strong>{% trans "Genre" %} :</strong> {{ book.display_genre }}</p>
-  <link rel="stylesheet" href="{% static 'css/book.css' %}">
+  <p><strong>{% trans "Release Day" %} :</strong> {{ book.release_day }}</p>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
       <ul class="book-css">
           <h4>{% trans "Copies" %} </h4>
               {% for copy in copy_list %}
@@ -24,4 +26,5 @@
               {% endfor %}
         </div>
     </ul>
+    </div>
 {% endblock %}

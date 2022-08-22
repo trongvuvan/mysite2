@@ -1,9 +1,11 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
-
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" >
 {% block content %}
-    <h1>{% trans "My Local Library Home" %} </h1> 
-    <p>{% trans "Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network" %} </em>!</p>
+    <div>
+    <h1><center>{% trans "My Local Library Home" %} </center></h1> 
+    <p><center>{% trans "Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network" %}</center></em></p>
     <h2>{% trans " Dynamic content" %} </h2>
     <p>{% trans "The library has the following record counts:" %} </p>
     <ul>
@@ -13,5 +15,6 @@
         <li><strong>{% trans "Authors" %} :</strong> {{ num_authors }}</li>
         <li><strong>{% trans "Genres" %} :</strong> {{ num_genre }}</li>
     </ul>
-    <p>{% trans "You have visited this page" %} {{ num_visits }} {%trans "time" %}{{ num_visits|pluralize }}.</p>
+    </div>
+    <div> {% trans "You have visited this page" %} {{ num_visits }} {%trans "time" %}{{ num_visits|pluralize }}.</div>
 {% endblock %} 

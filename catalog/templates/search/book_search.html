@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans "Book Search Results" %}</h1>
+<div>
+{% if book_list %}
+    <ul>
+    {% for book in book_list %}
+            <li>
+            <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+      <p>{% trans "There are no book available." %}</p>
+{% endif %}
+</div>
+{% endblock %}
