@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+  <h1>{% trans "Title" %}: {{ book.title }}</h1>
+  
+  <p><strong>{% trans "Author" %}: </strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>{% trans "Summary" %}: </strong> {{ book.summary }}</p>
+  <p><strong>{% trans "ISBN" %} : </strong> {{ book.isbn }}</p>
+  <p><strong>{% trans "Genre" %} :</strong> {{ book.display_genre }}</p>
+  <link rel="stylesheet" href="{% static 'css/book.css' %}">
+      <ul class="book-css">
+          <h4>{% trans "Copies" %} </h4>
+              {% for copy in copy_list %}
+              <hr>
+              <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+                  {{ copy.get_status_display }}
+              </p>
+              {% if copy.status != 'a' %}
+                  <p><strong>{% trans "Due to be returned" %}:</strong> {{ copy.due_back }}</p>
+              {% endif %}
+              <p><strong>{% trans "Imprint" %}:</strong> {{ copy.imprint }}</p>
+              <p class="text-muted"><strong>{% trans "Id" %}:</strong> {{ copy.id }}</p>
+              {% endfor %}
+        </div>
+    </ul>
+{% endblock %}
