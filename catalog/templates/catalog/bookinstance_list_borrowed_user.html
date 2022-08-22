@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 {% block content %}
+<div>
     <h1>{% trans "Borrowed books" %}</h1>
     {% if bookinstance_list %}
     <ul>
@@ -14,4 +15,5 @@
     {% else %}
         <p>{% trans "There are no books borrowed." %}</p>
     {% endif %}
+</div>
 {% endblock %}

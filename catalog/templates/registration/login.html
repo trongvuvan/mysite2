@@ -1,35 +1,39 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static%}
 {% block content %}
-  {% if form.errors %}
-      <p>{% trans "Your username and password didn't match. Please try again" %}.</p>
-  {% endif %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" >
+<div class="center">
+    {% if form.errors %}
+        <p>{% trans "Your username and password didn't match. Please try again" %}.</p>
+    {% endif %}
 
-  {% if next %}
-      {% if user.is_authenticated %}
-          <p>{% trans "Your account doesn't have access to this page. To proceed,
-          please login with an account that has access." %}</p>
-      {% else %}
-      <p>{% trans "Please login to see this page" %}.</p>
-      {% endif %}
-  {% endif %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>{% trans "Your account doesn't have access to this page. To proceed,
+            please login with an account that has access." %}</p>
+        {% else %}
+        <p>{% trans "Please login to see this page" %}.</p>
+        {% endif %}
+    {% endif %}
+    <div>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
 
-  <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      <table>
-          <tr>
-              <td>{{ form.username.label_tag }}</td>
-              <td>{{ form.username }}</td>
-          </tr>
-      <tr>
-          <td>{{ form.password.label_tag }}</td>
-          <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
-
-  <p><a href="{% url 'password_reset' %}">{% trans "Lost password?" %}</a></p>
-
+    <p><a href="{% url 'password_reset' %}">{% trans "Lost password?" %}</a></p>
+</div>
 {% endblock %}

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import permission_required,login_required, p
 from django.urls import reverse,reverse_lazy
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import Q
 
 from catalog.models import Author
 from catalog.forms import RenewBookForm
@@ -39,7 +40,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 2
+    paginate_by = 5
  
 class BookDetailView(generic.DetailView):
     model = Book
@@ -50,7 +51,7 @@ class BookDetailView(generic.DetailView):
 
 class AuthorListView(generic.ListView):
     model = Author
-    paginate_by = 2
+    paginate_by = 5
 
 class AuthorDetailView(generic.DetailView):
     model = Author
@@ -63,7 +64,7 @@ class AuthorDetailView(generic.DetailView):
 class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
     model = BookInstance
     template_name ='catalog/bookinstance_list_borrowed_user.html'
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         return BookInstance.objects.filter(borrower=self.request.user, status__exact='o').order_by('due_back')
@@ -71,7 +72,7 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
     model = BookInstance
     permission_required = 'catalog.can_mark_returned'
     template_name = 'catalog/bookinstance_list_borrowed_all.html'
-    paginate_by = 10
+    paginate_by = 5
 
     def get_queryset(self):
         return BookInstance.objects.filter(status__exact='o').order_by('due_back')
@@ -114,14 +115,40 @@ class AuthorDelete(DeleteView):
     success_url = reverse_lazy('authors')
 class BookCreate(PermissionRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'author', 'summary', 'isbn', 'genre']
+    fields = ['title', 'author', 'summary', 'isbn', 'genre','release_day','image_of_book']
     permission_required = 'catalog.can_mark_returned'
 
 class BookUpdate(PermissionRequiredMixin, UpdateView):
     model = Book
-    fields = ['title', 'author', 'summary', 'isbn', 'genre']
+    fields = ['title', 'author', 'summary', 'isbn', 'genre','release_day','image_of_book']
     permission_required = 'catalog.can_mark_returned'
 class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
+class BookSearch(generic.ListView):
+    model = Book
+    template_name = 'search/book_search.html'
+    def get_queryset(self):  
+        query = self.request.GET.get("book")   
+        object_list = Book.objects.filter( 
+            Q(title__icontains=query) | Q(genre__name=query) | Q(author__first_name=query) | Q(author__last_name=query)
+        )
+        return object_list 
+        #return render(self.request, 'catalog/book_list.html',{"books":object_list})
+class AuthorSearch(generic.ListView):
+    model = Author
+    template_name = 'search/author_search.html'
+    def get_queryset(self):  
+        query = self.request.GET.get("author")
+        
+        if str.isdigit(query) == 1:
+            object_list = Author.objects.filter( 
+                Q(first_name=query) | Q(last_name=query) | Q(date_of_birth__year = query)
+            )
+            return object_list
+        else: 
+            object_list = Author.objects.filter( 
+                Q(first_name=query) | Q(last_name=query)
+            )
+            return object_list

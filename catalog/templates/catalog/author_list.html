@@ -1,21 +1,27 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 {% block content %}
+<div>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <h1><center>{% trans "Author List" %} </center> </h1>
+        <form action="{% url 'author-search' %}" method="get">
+            <input name="author" type="text" placeholder="Search">
+            <button class="button" type="submit" >{% trans "Search" %}</button>
+        </form>
+  {% if author_list %}
+      <ul>
+          {% for author in author_list %}
+            <li>
+                <a href="{{ author.get_absolute_url }}">
+                {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
+              </a>
+            </li>
+        {% endfor %}
 
-<h1>{% trans "Author List" %} </h1>
-
-{% if author_list %}
-    <ul>
-        {% for author in author_list %}
-          <li>
-              <a href="{{ author.get_absolute_url }}">
-              {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
-            </a>
-          </li>
-      {% endfor %}
-
-    </ul>
-{% else %}
-      <p>{% trans "There are no authors available." %}</p>
-{% endif %}
+      </ul>
+  {% else %}
+        <p>{% trans "There are no authors available." %}</p>
+  {% endif %}
+</div>
 {% endblock %}
