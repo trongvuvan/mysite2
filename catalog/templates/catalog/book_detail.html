@@ -4,12 +4,15 @@
 {% block content %}
 <div>
   <h1>{% trans "Title" %}: {{ book.title }}</h1>
-  <h1> {{book.image_of_bool.url}}</h1>
   <p><strong>{% trans "Author" %}: </strong> <a href="{{ book.author.get_absolute_url }}" >{{ book.author }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>{% trans "Summary" %}: </strong> {{ book.summary }}</p>
   <p><strong>{% trans "ISBN" %} : </strong> {{ book.isbn }}</p>
   <p><strong>{% trans "Genre" %} :</strong> {{ book.display_genre }}</p>
   <p><strong>{% trans "Release Day" %} :</strong> {{ book.release_day }}</p>
+  <p><strong>{% trans "Book Cover" %} :</strong></p> 
+    {% if book.cover %}
+        <img src="{{ book.cover.url }}">
+    {% endif %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
       <ul class="book-css">
           <h4>{% trans "Copies" %} </h4>

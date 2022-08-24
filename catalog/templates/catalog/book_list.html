@@ -7,7 +7,7 @@
       <h1><center>{% trans "Book List" %}</center></h1>
       <form action="{% url 'book-search' %}" method="get">
         <input name="book" type="text" placeholder="Search">
-        <button class="button" type="submit" >Search</button>
+        <button class="button" type="submit" >{% trans "Search" %}</button>
       </form>
       {% if book_list %}
         <ul>

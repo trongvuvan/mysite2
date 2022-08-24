@@ -19,7 +19,7 @@ class Book(models.Model):
                              help_text=gettext('13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>'))
     genre = models.ManyToManyField(Genre, help_text=gettext('Select a genre for this book'))
     release_day = models.DateField(null=True, blank=True)
-    image_of_book = models.ImageField(null=True, blank=True, upload_to="image/")
+    cover = models.ImageField(null=True, blank=True, upload_to="image/")
     def __str__(self):
         return self.title
 

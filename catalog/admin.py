@@ -18,7 +18,7 @@ class BooksInstanceInline(admin.TabularInline):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_genre')
+    list_display = ('title', 'author', 'display_genre','release_day','cover')
     inlines = [BooksInstanceInline]
 
 @admin.register(BookInstance)
