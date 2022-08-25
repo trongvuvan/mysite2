@@ -1,9 +1,8 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 {% block content %}
-<div
-    <h1>{% trans "All Borrowed Books" %}</h1>
-
+<div>
+    <h1><center>{% trans "All Borrowed Books" %}</center></h1>
     {% if bookinstance_list %}
     <ul>
 
@@ -11,7 +10,7 @@
       <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
           <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> 
           ({{ bookinst.due_back }}) {% if user.is_staff %}- {{ bookinst.borrower }}{% endif %} 
-          {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>  {% endif %}
+          {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">{% trans "Renew" %}</a>  {% endif %}
       </li>
       {% endfor %}
     </ul>

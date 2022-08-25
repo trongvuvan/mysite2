@@ -1,18 +1,19 @@
 import datetime
 
 from django.views import generic
-from django.shortcuts import render,get_object_or_404
-from django.http import HttpResponse,HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required,login_required, permission_required
-from django.urls import reverse,reverse_lazy
-from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q
+from django.contrib.messages import constants as messages
 
 from catalog.models import Author
-from catalog.forms import RenewBookForm
+from catalog.forms import RenewBookForm,CreateBookForm
 from .models import Book, Author, BookInstance, Genre
 
 def index(request):
@@ -115,13 +116,14 @@ class AuthorDelete(DeleteView):
     success_url = reverse_lazy('authors')
 class BookCreate(PermissionRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'author', 'summary', 'isbn', 'genre','release_day','image_of_book']
+    fields = ['title', 'author', 'summary', 'isbn', 'genre','release_day','cover']
     permission_required = 'catalog.can_mark_returned'
 
 class BookUpdate(PermissionRequiredMixin, UpdateView):
     model = Book
-    fields = ['title', 'author', 'summary', 'isbn', 'genre','release_day','image_of_book']
+    fields = ['title', 'author', 'summary', 'isbn', 'genre','release_day','cover']
     permission_required = 'catalog.can_mark_returned'
+
 class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')

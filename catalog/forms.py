@@ -4,6 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext
 
+from .models import Book, Author, BookInstance, Genre
 class RenewBookForm(forms.Form):
     renewal_date = forms.DateField(help_text=gettext('Enter a date between now and 4 weeks (default 3).'))
 
@@ -17,3 +18,11 @@ class RenewBookForm(forms.Form):
             raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
 
         return data
+class CreateBookForm(forms.Form): 
+    class Meta:
+        model = Book
+        fields='__all__'
+        
+    def __init__(self, *args, **kwargs):
+        super(CreateBookForm, self).__init__(*args, **kwargs)
+        
