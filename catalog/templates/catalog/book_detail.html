@@ -3,31 +3,36 @@
 {% load static %}
 {% block content %}
 <div>
-  <h1>{% trans "Title" %}: {{ book.title }}</h1>
-  <p><strong>{% trans "Author" %}: </strong> <a href="{{ book.author.get_absolute_url }}" >{{ book.author }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>{% trans "Summary" %}: </strong> {{ book.summary }}</p>
-  <p><strong>{% trans "ISBN" %} : </strong> {{ book.isbn }}</p>
-  <p><strong>{% trans "Genre" %} :</strong> {{ book.display_genre }}</p>
-  <p><strong>{% trans "Release Day" %} :</strong> {{ book.release_day }}</p>
-  <p><strong>{% trans "Book Cover" %} :</strong></p> 
-    {% if book.cover %}
-        <img src="{{ book.cover.url }}">
-    {% endif %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-      <ul class="book-css">
-          <h4>{% trans "Copies" %} </h4>
-              {% for copy in copy_list %}
-              <hr>
-              <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
-                  {{ copy.get_status_display }}
-              </p>
-              {% if copy.status != 'a' %}
-                  <p><strong>{% trans "Due to be returned" %}:</strong> {{ copy.due_back }}</p>
-              {% endif %}
-              <p><strong>{% trans "Imprint" %}:</strong> {{ copy.imprint }}</p>
-              <p class="text-muted"><strong>{% trans "Id" %}:</strong> {{ copy.id }}</p>
-              {% endfor %}
-        </div>
-    </ul>
-    </div>
+    <h1>{% trans "Title" %}: {{ book.title }}</h1>
+    <p><strong>{% trans "Author" %}: </strong> <a href="{{ book.author.get_absolute_url }}" >{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+    <p><strong>{% trans "Summary" %}: </strong> {{ book.summary }}</p>
+    <p><strong>{% trans "ISBN" %} : </strong> {{ book.isbn }}</p>
+    <p><strong>{% trans "Genre" %} :</strong> {{ book.display_genre }}</p>
+    <p><strong>{% trans "Release Day" %} :</strong> {{ book.release_day }}</p>
+    <p><strong>{% trans "Book Cover" %} :</strong></p> 
+
+        {% if book.cover %}
+            <img class ="img" src="{{ book.cover.url }}">
+        {% endif %}
+        </br>
+        </br>
+        </br>
+        </br>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+            <ul class="book-css">
+            <h4>{% trans "Copies" %} </h4>
+                {% for copy in copy_list %}
+                <hr>
+                <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+                    {{ copy.get_status_display }}
+                </p>
+                {% if copy.status != 'a' %}
+                    <p><strong>{% trans "Due to be returned" %}:</strong> {{ copy.due_back }}</p>
+                {% endif %}
+                <p><strong>{% trans "Imprint" %}:</strong> {{ copy.imprint }}</p>
+                <p class="text-muted"><strong>{% trans "Id" %}:</strong> {{ copy.id }}</p>
+                {% endfor %}
+            </div>
+        </ul>
+</div>
 {% endblock %}

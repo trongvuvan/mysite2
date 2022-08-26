@@ -2,11 +2,11 @@
 {% load i18n %}
 {% block content %}
 
-<h1>{% trans "Delete Book" %}</h1>
+<h1><center>{% trans "Delete Book" %}</center></h1>
 
-<p>{% trans "Are you sure you want to delete the book" %}: {{ book }}?</p>
+<p><center>{% trans "Are you sure you want to delete the book ?" %}: {{ book }}</center></p>
 
-<form action="" method="POST">
+<form class = "content-body" action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes, delete.">
 </form>

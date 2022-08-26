@@ -2,20 +2,25 @@
 {% load i18n %}
 {% load static %}
 {% block content %}
-<div>
+<div class="content-body">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <h1><center>{% trans "Author List" %} </center> </h1>
+    <center>
         <form action="{% url 'author-search' %}" method="get">
             <input name="author" type="text" placeholder="Search">
             <button class="button" type="submit" >{% trans "Search" %}</button>
         </form>
+    </center>
   {% if author_list %}
       <ul>
           {% for author in author_list %}
             <li>
-                <a href="{{ author.get_absolute_url }}">
-                {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
-              </a>
+                <a href="{{ author.get_absolute_url }}">{{ author }} </a>
+                <a> ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})</a>
+              {% if user.is_staff %}
+                <a href="{% url 'author-update' author.pk %} " >{% trans "update" %} </a>| 
+                <a href="{% url 'author-delete' author.pk %} " >{% trans "delete" %} </a>
+              {% endif %}
             </li>
         {% endfor %}
 

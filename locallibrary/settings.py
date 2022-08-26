@@ -79,7 +79,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "OPTIONS": 
             {
-                "read_default_file": "/home/trong/my.conf",
+                "read_default_file": "/home/gnort/my.conf",
                 }
     }
 }
@@ -128,6 +128,7 @@ ugettext = lambda s: s
 LANGUAGES = (
     ('vi', ugettext('VietNamese')),
     ('ja', ugettext('Japanese')),
+    ('us', ugettext('Japanese')),
 )
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',

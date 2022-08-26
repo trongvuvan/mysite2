@@ -3,12 +3,12 @@
 {% load static %}
 <link href="{% static 'css/styles.css' %}" rel="stylesheet" >
 {% block content %}
-    <div>
+    <div class =  "content">
     <h1><center>{% trans "My Local Library Home" %} </center></h1> 
     <p><center>{% trans "Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network" %}</center></em></p>
-    <h2>{% trans " Dynamic content" %} </h2>
-    <p>{% trans "The library has the following record counts:" %} </p>
-    <ul>
+    <h2><center>{% trans " Dynamic content" %} </center></h2>
+    <p><center>{% trans "The library has the following record counts:" %}</center> </p>
+    <ul class = "content-body">
         <li><strong>{% trans "Books" %} :</strong> {{ num_books }}</li>
         <li><strong>{% trans "Copies" %} :</strong> {{ num_instances }}</li>
         <li><strong>{% trans "Copies available" %} :</strong> {{ num_instances_available }}</li>
@@ -16,5 +16,5 @@
         <li><strong>{% trans "Genres" %} :</strong> {{ num_genre }}</li>
     </ul>
     </div>
-    <div> {% trans "You have visited this page" %} {{ num_visits }} {%trans "time" %}{{ num_visits|pluralize }}.</div>
+    <div class ="content-footer"> {% trans "You have visited this page" %} {{ num_visits }} {%trans "time" %}{{ num_visits|pluralize }}.</div>
 {% endblock %} 

@@ -25,4 +25,11 @@ class CreateBookForm(forms.Form):
         
     def __init__(self, *args, **kwargs):
         super(CreateBookForm, self).__init__(*args, **kwargs)
+class CreateAuthorForm(forms.Form): 
+    class Meta:
+        model = Author
+        fields='__all__'
+        
+    def __init__(self, *args, **kwargs):
+        super(CreateAuthorForm, self).__init__(*args, **kwargs)
         
