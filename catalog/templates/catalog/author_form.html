@@ -1,8 +1,8 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 {% block content %}
-
-    <form action="" method="post">
+<h1><strong><center>{% trans "Add author to library" %} </center></strong></h1>
+    <form class = "content-body" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
         <table>
         {{ form.as_table }}

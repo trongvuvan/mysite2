@@ -5,7 +5,7 @@
     <h1><center>{% trans "All Borrowed Books" %}</center></h1>
     {% if bookinstance_list %}
     <ul>
-
+      <div class = "content-body">
       {% for bookinst in bookinstance_list %} 
       <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
           <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> 
@@ -13,6 +13,7 @@
           {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">{% trans "Renew" %}</a>  {% endif %}
       </li>
       {% endfor %}
+      </div>
     </ul>
 
     {% else %}

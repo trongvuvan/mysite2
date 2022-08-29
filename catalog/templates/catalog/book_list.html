@@ -2,21 +2,29 @@
 {% load i18n %}
 {% load static %}
 {% block content %}
-<div>
+<div class ="content-body">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
       <h1><center>{% trans "Book List" %}</center></h1>
+      <center>
       <form action="{% url 'book-search' %}" method="get">
         <input name="book" type="text" placeholder="Search">
         <button class="button" type="submit" >{% trans "Search" %}</button>
       </form>
+      </center>
       {% if book_list %}
         <ul>
+            {% if book.cover %}
+              <img class ="img" src="{{ book.cover.url }}">
+            {% endif %}
             {% for book in book_list %}
-            <li>
-                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-            </li>
+                <li> <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}}) 
+                  {% if user.is_staff %}
+                    <a href="{% url 'book-update' book.pk %} " method ="get" >{% trans "update" %} </a> | 
+                    <a href="{% url 'book-delete' book.pk %} " method ="get" >{% trans "delete" %} </a>
+                  {% endif %}
+                </li>
             {% endfor %}
-        </ul>
+        </ul> 
       {% else %}
         <p>{% trans " There are no books in the library" %}</p>
       {% endif %}

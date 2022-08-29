@@ -15,11 +15,23 @@
         <div class="row">
           <div>
           {% block sidebar %}
-          <nav id="navigation"
-              <ul class="sidebar-nav">
+          <nav id="navigation">
+                <div>
+                  <ul>
                   <li><a href="{% url 'index' %}"> {% trans "Home" %} </a></li>
                   <li><a href="{% url 'books' %}">{% trans "All books" %}</a></li>
                   <li><a href="{% url 'authors' %}">{% trans "All authors" %}</a></li>
+                  {% if user.is_staff %}
+                    <li><a>{% trans "Staff" %}</a></li>
+                      <li><a href="{% url 'all-borrowed' %}">{% trans "All borrowed" %}</a></li>
+                      <li><a href="{% url 'author-create' %}">{% trans "Create Author" %}</a></li>
+                      <li><a href="{% url 'book-create' %}">{% trans "Create Book" %}</a></li>
+                  {% endif %}
+                  </ul>
+                </div>
+
+                <div class = "sidebar-right">
+                  <ul>
                   {% if user.is_authenticated %}
                     <li><a> {% trans "User" %}: {{ user.get_username }} </a></li>
                     <li><a href="{% url 'my-borrowed' %}">{% trans "My Borrowed" %}</a></li>
@@ -27,15 +39,9 @@
                   {% else %}
                     <li><a href="{% url 'login'%}?next={{request.path}}">{% trans "Login" %}</a></li>   
                   {% endif %} 
-                  
-                  {% if user.is_staff %}
-                      <li><a>{% trans "Staff" %}</a></li>
-                  {% if perms.catalog.can_mark_returned %}
-                      <li><a href="{% url 'all-borrowed' %}">{% trans "All borrowed" %}</a></li>
-                  {% endif %}
-                 
-              </ul>
-              {% endif %}
+                  </ul>
+                </div>                    
+            
               </ul>
           </nav>
               
@@ -46,7 +52,7 @@
             {% endblock %}
             {% block pagination %}
               {% if is_paginated %}
-                  <div class="pagination">
+                  <div class="content-footer">
                       <span class="page-links">
                           {% if page_obj.has_previous %}
                               <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>

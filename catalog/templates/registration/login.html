@@ -2,38 +2,47 @@
 {% load i18n %}
 {% load static%}
 {% block content %}
-<link href="{% static 'css/styles.css' %}" rel="stylesheet" >
-<div class="center">
-    {% if form.errors %}
-        <p>{% trans "Your username and password didn't match. Please try again" %}.</p>
-    {% endif %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet" >
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p>{% trans "Your account doesn't have access to this page. To proceed,
-            please login with an account that has access." %}</p>
-        {% else %}
-        <p>{% trans "Please login to see this page" %}.</p>
+<div class="container">
+        {% if form.errors %}
+            <p>{% trans "Your username and password didn't match. Please try again" %}.</p>
         {% endif %}
-    {% endif %}
-    <div>
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
-        <input type="submit" value="login">
-        <input type="hidden" name="next" value="{{ next }}">
-        </form>
-    </div>
 
-    <p><a href="{% url 'password_reset' %}">{% trans "Lost password?" %}</a></p>
-</div>
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>{% trans "Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access." %}</p>
+                {% else %}
+                <p><center>{% trans "Please login to see this page" %}</center></p>
+                {% endif %}
+        {% endif %}
+        <div id="login">
+            <div class="container">
+                <div id="login-row" class="row justify-content-center align-items-center">
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12">
+                            <form id="login-form" class="form" action="{% url 'login' %}" method="post" >
+                                {% csrf_token %}
+                                <h3 class="text-center text-info">Login</h3><br>
+                                <div class="form-group">
+                                    <label for="username" class="text-info">Username:</label>
+                                    <center>{{form.username}}</center>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="text-info">Password:</label><br>
+                                    <center>{{form.password}}</center>
+                                </div>
+                                <center> <input type="submit" value="login"> </center>
+                                <input type="hidden" name="next" value="{{ next }}">
+                            </form>
+                            <center><a href="{% url 'password_reset' %}">{% trans "Lost password?" %}</a></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}

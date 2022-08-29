@@ -56,3 +56,39 @@
 	color: #000000; 
 	background: #73a340 url(images/menu_hover.jpg) top left repeat; 
 }
+#navigation {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+}
+#navigation .sidebar-right ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+}
+#navigation .sidebar-right ul li{
+    margin-right: 15px;
+}
+.content-footer{
+    bottom : 20px;
+    left :42%;
+    position: fixed;
+}
+.content-body{
+    display : block;
+    width: 500px;
+    margin: 50px auto;
+}
+.content-body li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top:30px;
+}
+.img {
+    float: left;
+    width:  100px;
+    height: 100px;
+    background-size: cover;
+}

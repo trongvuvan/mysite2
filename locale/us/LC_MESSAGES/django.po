@@ -16,7 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: catalog/forms.py:9
 msgid "Enter a date between now and 4 weeks (default 3)."
@@ -32,133 +31,123 @@ msgstr ""
 
 #: catalog/models.py:9
 msgid "Enter a book genre (e.g. Science Fiction)"
-msgstr "本のタイプを入力してください"
+msgstr ""
 
 #: catalog/models.py:17
 msgid "Enter a brief description of the book"
-msgstr "本の説明を入力してください"
+msgstr ""
 
 #: catalog/models.py:19
 msgid ""
 "13 Character <a href=\"https://www.isbn-international.org/content/what-isbn"
 "\">ISBN number</a>"
-msgstr "ISBN番号"
+msgstr ""
 
 #: catalog/models.py:20
 msgid "Select a genre for this book"
-msgstr "本のタイプを選択してください"
+msgstr ""
 
 #: catalog/models.py:35
 msgid "Unique ID for this particular book across whole library"
-msgstr "ライブラリ全体でこの特定の書籍の一意の ID"
+msgstr ""
 
 #: catalog/models.py:52
 msgid "Book availability"
-msgstr "予約状況"
+msgstr ""
 
 #: catalog/templates/base_generic.html:6
 msgid "My Local Library"
-msgstr "私の地元の図書館"
+msgstr ""
 
 #: catalog/templates/base_generic.html:21
 msgid "Home"
-msgstr "家"
+msgstr ""
 
 #: catalog/templates/base_generic.html:22
 msgid "All books"
-msgstr "すべての本"
+msgstr ""
 
 #: catalog/templates/base_generic.html:23
 msgid "All authors"
-msgstr "すべての著者"
+msgstr ""
 
 #: catalog/templates/base_generic.html:25
 msgid "Staff"
 msgstr ""
 
 #: catalog/templates/base_generic.html:27
-#, fuzzy
-#| msgid "My Borrowed"
 msgid "All borrowed"
-msgstr "私の借り物"
+msgstr ""
 
 #: catalog/templates/base_generic.html:28
-#, fuzzy
-#| msgid "Author"
 msgid "Create Author"
-msgstr "著者"
+msgstr ""
 
 #: catalog/templates/base_generic.html:29
-#, fuzzy
-#| msgid "Delete Book"
 msgid "Create Book"
-msgstr "書籍を削除する"
+msgstr ""
 
 #: catalog/templates/base_generic.html:38
 msgid "User"
-msgstr "ユーザー"
+msgstr ""
 
 #: catalog/templates/base_generic.html:39
 msgid "My Borrowed"
-msgstr "私の借り物"
+msgstr ""
 
 #: catalog/templates/base_generic.html:40
 msgid "Logout"
-msgstr "ログアウト"
+msgstr ""
 
 #: catalog/templates/base_generic.html:42
 msgid "Login"
-msgstr "ログイン"
+msgstr ""
 
 #: catalog/templates/base_generic.html:60
 msgid "previous"
-msgstr "前"
+msgstr ""
 
 #: catalog/templates/base_generic.html:63
 msgid "Page"
-msgstr "ペジ"
+msgstr ""
 
 #: catalog/templates/base_generic.html:63
 msgid "of"
-msgstr "の"
+msgstr ""
 
 #: catalog/templates/base_generic.html:66
 msgid "next"
-msgstr "次"
+msgstr ""
 
 #: catalog/templates/catalog/author_confirm_delete.html:5
-#, fuzzy
-#| msgid "Author"
 msgid "Delete Author"
-msgstr "著者"
+msgstr ""
 
 #: catalog/templates/catalog/author_confirm_delete.html:7
-#, fuzzy
-#| msgid "Are you sure you want to delete the author"
 msgid "Are you sure you want to delete the author ?"
-msgstr "作成者を削除してもよろしいですか?"
+msgstr ""
 
 #: catalog/templates/catalog/author_detail.html:5
 #: catalog/templates/catalog/book_detail.html:7
 msgid "Author"
-msgstr "著者"
+msgstr ""
 
 #: catalog/templates/catalog/author_detail.html:9
 #: catalog/templates/index.html:12
 msgid "Books"
-msgstr "本"
+msgstr ""
 
 #: catalog/templates/catalog/author_detail.html:14
 msgid "Book Summary"
-msgstr "本の概要"
+msgstr ""
 
 #: catalog/templates/catalog/author_form.html:4
 msgid "Add author to library"
-msgstr "筆者を追加する"
+msgstr ""
 
 #: catalog/templates/catalog/author_list.html:7
 msgid "Author List"
-msgstr "著者リスト"
+msgstr ""
 
 #: catalog/templates/catalog/author_list.html:11
 #: catalog/templates/catalog/book_list.html:11
@@ -167,10 +156,8 @@ msgstr ""
 
 #: catalog/templates/catalog/author_list.html:21
 #: catalog/templates/catalog/book_list.html:22
-#, fuzzy
-#| msgid "Due date"
 msgid "update"
-msgstr "期日"
+msgstr ""
 
 #: catalog/templates/catalog/author_list.html:22
 #: catalog/templates/catalog/book_list.html:23
@@ -180,37 +167,35 @@ msgstr ""
 #: catalog/templates/catalog/author_list.html:29
 #: catalog/templates/search/author_search.html:18
 msgid "There are no authors available."
-msgstr "利用可能な著者がありません"
+msgstr ""
 
 #: catalog/templates/catalog/book_confirm_delete.html:5
 msgid "Delete Book"
-msgstr "書籍を削除する"
+msgstr ""
 
 #: catalog/templates/catalog/book_confirm_delete.html:7
-#, fuzzy
-#| msgid "Are you sure you want to delete the book"
 msgid "Are you sure you want to delete the book ?"
-msgstr "書籍を削除してもよろしいですか"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:6
 msgid "Title"
-msgstr "題名"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:8
 msgid "Summary"
-msgstr "概要"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:9
 msgid "ISBN"
-msgstr "ISBN"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:10
 msgid "Genre"
-msgstr "ジャンル"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:11
 msgid "Release Day"
-msgstr "開発日"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:12
 msgid "Book Cover"
@@ -219,164 +204,150 @@ msgstr ""
 #: catalog/templates/catalog/book_detail.html:23
 #: catalog/templates/index.html:13
 msgid "Copies"
-msgstr "コピー"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:30
 msgid "Due to be returned"
-msgstr "返却予定"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:32
 msgid "Imprint"
-msgstr "インプリント"
+msgstr ""
 
 #: catalog/templates/catalog/book_detail.html:33
 msgid "Id"
-msgstr "IID"
+msgstr ""
 
 #: catalog/templates/catalog/book_form.html:4
 msgid "Add book to library"
-msgstr "本を追加する"
+msgstr ""
 
 #: catalog/templates/catalog/book_list.html:7
 msgid "Book List"
-msgstr "ブックリスト"
+msgstr ""
 
 #: catalog/templates/catalog/book_list.html:29
 msgid " There are no books in the library"
-msgstr "図書館に本がありません"
+msgstr ""
 
 #: catalog/templates/catalog/book_renew_librarian.html:4
 #: catalog/templates/catalog/bookinstance_list_borrowed_all.html:13
 msgid "Renew"
-msgstr "更新する"
+msgstr ""
 
 #: catalog/templates/catalog/book_renew_librarian.html:5
-#, fuzzy
-#| msgid "My Borrowed"
 msgid "Borrower"
-msgstr "私の借り物"
+msgstr ""
 
 #: catalog/templates/catalog/book_renew_librarian.html:6
 msgid "Due date"
-msgstr "期日"
+msgstr ""
 
 #: catalog/templates/catalog/bookinstance_list_borrowed_all.html:5
-#, fuzzy
-#| msgid "Borrowed books"
 msgid "All Borrowed Books"
-msgstr "借りた図書"
+msgstr ""
 
 #: catalog/templates/catalog/bookinstance_list_borrowed_all.html:20
 #: catalog/templates/catalog/bookinstance_list_borrowed_user.html:18
-#, fuzzy
-#| msgid " There are no books in the library"
 msgid "There are no books borrowed."
-msgstr "図書館に本がありません"
+msgstr ""
 
 #: catalog/templates/catalog/bookinstance_list_borrowed_user.html:5
 msgid "Borrowed books"
-msgstr "借りた図書"
+msgstr ""
 
 #: catalog/templates/index.html:7
 msgid "My Local Library Home"
-msgstr "マイ ローカル ライブラリ ホーム"
+msgstr ""
 
 #: catalog/templates/index.html:8
 msgid ""
 "Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network"
 msgstr ""
-"Mozilla Developer Network によって開発された Web サイト、LocalLibrary へよう"
-"こそ"
 
 #: catalog/templates/index.html:9
 msgid " Dynamic content"
-msgstr "動的コンテンツ"
+msgstr ""
 
 #: catalog/templates/index.html:10
 msgid "The library has the following record counts:"
-msgstr "ライブラリには次のレコード数があります"
+msgstr ""
 
 #: catalog/templates/index.html:14
 msgid "Copies available"
-msgstr "利用可能なコピー"
+msgstr ""
 
 #: catalog/templates/index.html:15
 msgid "Authors"
-msgstr "著者"
+msgstr ""
 
 #: catalog/templates/index.html:16
 msgid "Genres"
-msgstr "ジャンル"
+msgstr ""
 
 #: catalog/templates/index.html:19
 msgid "You have visited this page"
-msgstr "このウェブサイトにきた"
+msgstr ""
 
 #: catalog/templates/index.html:19
-#, fuzzy
-#| msgid "times"
 msgid "time"
-msgstr "回"
+msgstr ""
 
 #: catalog/templates/registration/logged_out.html:4
 msgid "Logged out!"
-msgstr "ログアウトしました"
+msgstr ""
 
 #: catalog/templates/registration/logged_out.html:5
 msgid "Click here to login again."
-msgstr "ここをクリックして再度ログインしてください。"
+msgstr ""
 
 #: catalog/templates/registration/login.html:12
 msgid "Your username and password didn't match. Please try again"
-msgstr "ユーザー名とパスワードが一致しませんでした。 もう一度お試しください"
+msgstr ""
 
 #: catalog/templates/registration/login.html:20
 msgid "Please login to see this page"
-msgstr "このページを見るにはログインしてください"
+msgstr ""
 
 #: catalog/templates/registration/login.html:42
 msgid "Lost password?"
-msgstr "パスワードをお忘れですか？"
+msgstr ""
 
 #: catalog/templates/registration/password_reset_complete.html:4
 msgid "The password has been changed!"
-msgstr "パスワードが変更されました"
+msgstr ""
 
 #: catalog/templates/registration/password_reset_complete.html:5
 msgid "log in again?"
-msgstr "再ログイン?"
+msgstr ""
 
 #: catalog/templates/registration/password_reset_confirm.html:5
 msgid "Please enter (and confirm) your new password."
-msgstr "新しいパスワードを入力 (および確認) してください"
+msgstr ""
 
 #: catalog/templates/registration/password_reset_confirm.html:26
 msgid "Password reset failed"
-msgstr "パスワードのリセットに失敗しました"
+msgstr ""
 
 #: catalog/templates/registration/password_reset_confirm.html:27
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"パスワード リセット リンクが無効でした。おそらく、すでに無効になっているため"
-"です使用済みです。新しいパスワードのリセットをリクエストしてください。"
 
 #: catalog/templates/registration/password_reset_done.html:4
 msgid ""
 "We've emailed you instructions for setting your password. If they haven't "
 "arrived in a few minutes, check your spam folder"
 msgstr ""
-"パスワードの設定手順をメールで送信しました。設定されていない場合数分で到着し"
-"ました。迷惑メール フォルダを確認してください"
 
 #: catalog/templates/registration/password_reset_email.html:3
 msgid "Someone asked for password reset for email"
-msgstr "誰かがメールのパスワードのリセットを要求しました"
+msgstr ""
 
 #: catalog/templates/registration/password_reset_email.html:3
 msgid "Follow the link below:"
-msgstr "以下のリンクに従ってください"
+msgstr ""
 
 #: catalog/templates/search/author_search.html:4
 msgid "Author Search Results"
@@ -387,15 +358,13 @@ msgid "Book Search Results"
 msgstr ""
 
 #: catalog/templates/search/book_search.html:15
-#, fuzzy
-#| msgid "There are no authors available."
 msgid "There are no book available."
-msgstr "利用可能な著者がありません"
+msgstr ""
 
 #: locallibrary/settings.py:129
 msgid "VietNamese"
-msgstr "ベトナム語"
+msgstr ""
 
 #: locallibrary/settings.py:130 locallibrary/settings.py:131
 msgid "Japanese"
-msgstr "日本語"
+msgstr ""
