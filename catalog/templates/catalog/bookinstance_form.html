@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1><center>{% trans "Borrow Book Page" %} </center></h1>
+  <h1><center><strong>{% trans "Book Title:"%}</strong>  {{ book_instance.book.title }}</center></h1>
+  <p><center><strong>{% trans "Imprint:" %}</strong> {{ book_instance.imprint }}</center></p>
+  <center><p class="text-muted"><strong>Id:</strong> {{ book_instance.id }}</p></center>
+
+  <form class = "content-body" enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

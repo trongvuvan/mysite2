@@ -13,7 +13,7 @@ from django.db.models import Q
 from django.contrib.messages import constants as messages
 
 from catalog.models import Author
-from catalog.forms import RenewBookForm,CreateBookForm
+from catalog.forms import BorrowBookForm, RenewBookForm, CreateBookForm
 from .models import Book, Author, BookInstance, Genre
 
 def index(request):
@@ -137,7 +137,6 @@ class BookSearch(generic.ListView):
             Q(title__icontains=query) | Q(genre__name=query) | Q(author__first_name=query) | Q(author__last_name=query)
         )
         return object_list 
-        #return render(self.request, 'catalog/book_list.html',{"books":object_list})
 class AuthorSearch(generic.ListView):
     model = Author
     template_name = 'search/author_search.html'
@@ -154,3 +153,45 @@ class AuthorSearch(generic.ListView):
                 Q(first_name=query) | Q(last_name=query)
             )
             return object_list
+# using modelform
+@login_required
+def BookBorrow(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    if request.method == 'POST':
+        form = BorrowBookForm(request.POST)
+
+        if form.is_valid():
+
+            book_instance.borrow_day = datetime.date.today()
+            book_instance.due_back = form.cleaned_data['due_back']
+            book_instance.borrower = request.user
+            book_instance.status = 'o'
+
+            book_instance.save()
+
+            return HttpResponseRedirect(reverse('my-borrowed'))
+
+    else:
+        proposed_rent_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = BorrowBookForm(initial={'due_back': proposed_rent_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_borrow.html', context)
+
+# using modelform
+@login_required
+def BookReturn(request, pk):
+
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    book_instance.due_back = None
+    book_instance.borrower = None
+    book_instance.status = 'a'
+
+    book_instance.save()
+    return HttpResponseRedirect(reverse('my-borrowed'))
