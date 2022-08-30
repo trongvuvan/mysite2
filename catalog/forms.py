@@ -3,6 +3,7 @@ import datetime
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext
+from django.forms import ModelForm
 
 from .models import Book, Author, BookInstance, Genre
 class RenewBookForm(forms.Form):
@@ -32,4 +33,15 @@ class CreateAuthorForm(forms.Form):
         
     def __init__(self, *args, **kwargs):
         super(CreateAuthorForm, self).__init__(*args, **kwargs)
-        
+
+class BorrowBookForm(ModelForm):
+    def clean_due_back(self):
+        data = self.cleaned_data['due_back']
+
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - borrow in past'))
+        return data
+    class Meta:
+        model = BookInstance
+        fields = ['due_back']
+        labels = {'due_back': gettext('Return date')}

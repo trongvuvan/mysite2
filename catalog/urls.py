@@ -28,4 +28,7 @@ urlpatterns = [
     
     path("book-search/", views.BookSearch.as_view(), name='book-search'),
     path("author-search/", views.AuthorSearch.as_view(), name='author-search'),
+
+    path('book/<uuid:pk>/borrow/', views.BookBorrow, name='book-borrow'),
+    path('book/<uuid:pk>/return/', views.BookReturn, name='book-return'),
 ]

@@ -31,6 +31,12 @@
                 {% endif %}
                 <p><strong>{% trans "Imprint" %}:</strong> {{ copy.imprint }}</p>
                 <p class="text-muted"><strong>{% trans "Id" %}:</strong> {{ copy.id }}</p>
+                {% if copy.status == 'a' %}
+                    <a href="{% url 'book-borrow' copy.id %}">{% trans "Borrow" %}</a>
+                {% endif %}
+                {% if copy.borrower == user %}
+                    <a href="{% url 'book-return' copy.id %}">{% trans "Return" %}</a>
+                {% endif %}
                 {% endfor %}
             </div>
         </ul>
