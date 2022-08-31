@@ -1,17 +1,31 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% block content %}
 <div>
     <h1><center>{% trans "All Borrowed Books" %}</center></h1>
+    <center>
+      <form action="{% url 'borrow-search' %}" method="get">
+        <input name="borrow" type="text" placeholder="Search">
+        <button class="button" type="submit" >{% trans "Search" %}</button>
+      </form>
+    </center>
     {% if bookinstance_list %}
     <ul>
       <div class = "content-body">
       {% for bookinst in bookinstance_list %} 
       <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-          <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> 
-          ({{ bookinst.due_back }}) {% if user.is_staff %}- {{ bookinst.borrower }}{% endif %} 
-          {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">{% trans "Renew" %}</a>  {% endif %}
-      </li>
+          <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> </br>
+          <strong>{% trans "Due back" %} </strong>({{ bookinst.due_back }}) {% if user.is_staff %} </br>
+          <a><strong> {% trans "Borrower : " %}</strong>{{ bookinst.borrower }}{% endif %} </a></br>
+          <a> <strong>{% trans "Borrow status" %} </strong> {{bookinst.get_borrow_display}} </a></br>
+          {% if perms.catalog.can_mark_returned %} <a href="{% url 'renew-book-librarian' bookinst.id %}">{% trans "Renew" %}</a>  {% endif %}
+          {% if perms.catalog.can_mark_returned %} 
+          {% if bookinst.borrow == 'w' %}
+          <a href="{% url 'changes-borrow-status' bookinst.id %}">{% trans "Change status" %}</a>  {% endif %}
+          {% endif %}
+        </li>
       {% endfor %}
       </div>
     </ul>

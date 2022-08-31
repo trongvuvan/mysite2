@@ -77,14 +77,14 @@
 }
 .content-body{
     display : block;
-    width: 500px;
-    margin: 50px auto;
+    width: 400px;
+    margin: 60px auto;
 }
 .content-body li {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    margin-top:30px;
+    margin-top:50px;
 }
 .img {
     float: left;
