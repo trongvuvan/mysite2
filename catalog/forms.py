@@ -19,6 +19,13 @@ class RenewBookForm(forms.Form):
             raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
 
         return data
+
+class BookRequest(ModelForm):
+    class Meta:
+        model = BookInstance
+        fields=['borrow']
+        labels = {'borrow': gettext('borrow status')}
+
 class CreateBookForm(forms.Form): 
     class Meta:
         model = Book

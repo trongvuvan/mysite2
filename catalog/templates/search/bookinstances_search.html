@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+<h1><center>{% trans "Book Borrow Search Results" %}</center></h1>
+<div class="content-body">
+{% if bookinstance_list %}
+    <ul>
+        {% for bookinst in bookinstance_list %}
+            <li>
+                <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> 
+                ({{ bookinst.due_back }}) 
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+      <p><center>{% trans "There are no book available." %}</center></p>
+{% endif %}
+</div>
+{% endblock %}

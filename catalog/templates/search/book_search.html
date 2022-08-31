@@ -1,8 +1,10 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 {% block content %}
-<h1>{% trans "Book Search Results" %}</h1>
-<div>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+<h1><center>{% trans "Book Search Results" %}</center</h1>
+<div class ="content-body">
 {% if book_list %}
     <ul>
     {% for book in book_list %}
@@ -12,7 +14,7 @@
     {% endfor %}
 </ul>
 {% else %}
-      <p>{% trans "There are no book available." %}</p>
+      <p><center>{% trans "There are no book available." %}</center></p>
 {% endif %}
 </div>
 {% endblock %}

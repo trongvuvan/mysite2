@@ -1,21 +1,23 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 {% block content %}
-<h1>{% trans "Author Search Results" %}</h1>
-<div>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+<h1><center>{% trans "Author Search Results" %}</center></h1>
+<div class = "content-body">
 {% if author_list %}
     <ul>
         {% for author in author_list %}
           <li>
               <a href="{{ author.get_absolute_url }}">
-              {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
+              {{ author }} ({{author.date_of_birth.year}} - {% if author.date_of_death %}{{author.date_of_death.year}}{% endif %})
             </a>
           </li>
       {% endfor %}
 
     </ul>
 {% else %}
-      <p>{% trans "There are no authors available." %}</p>
+      <p><center>{% trans "There are no authors available." %}</center></p>
 {% endif %}
   </div>
 {% endblock %}

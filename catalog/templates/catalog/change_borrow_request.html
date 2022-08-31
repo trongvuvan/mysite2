@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+{% block content %}
+  <h1><center>{% trans "Request" %}</center></h1>
+  <h1><center>{% trans "Book title" %}: {{ book_instance.book.title}}</center></h1>
+  <p><center>{% trans "Borrower" %}: {{ book_instance.borrower }}</center></p>
+  <center>{% trans "Borrow Day" %}: {{ book_instance.borrow_day }}</center></p>
+  <p{% if book_instance.is_overdue %} class="text-danger"{% endif %}><center>{% trans "Due date" %}: {{ book_instance.due_back }}</center></p>
+  <center>
+  <form action="" method="post">
+      {% csrf_token %}
+      <table>
+      {{ form.as_table }}
+      </table>
+      <input type="submit" value="Submit">
+  </form>
+</center>
+{% endblock %}

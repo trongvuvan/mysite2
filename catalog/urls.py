@@ -31,4 +31,8 @@ urlpatterns = [
 
     path('book/<uuid:pk>/borrow/', views.BookBorrow, name='book-borrow'),
     path('book/<uuid:pk>/return/', views.BookReturn, name='book-return'),
+
+    path("borrow-search/", views.BookInstanceSearch.as_view(), name='borrow-search'),
+    
+    path('book/<uuid:pk>/request/', views.change_borrow_request, name='changes-borrow-status'),
 ]
