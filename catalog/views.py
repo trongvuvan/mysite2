@@ -1,4 +1,5 @@
 import datetime
+from turtle import title
 
 from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect
@@ -13,7 +14,7 @@ from django.db.models import Q
 from django.contrib.messages import constants as messages
 
 from catalog.models import Author
-from catalog.forms import BorrowBookForm, RenewBookForm, CreateBookForm
+from catalog.forms import BorrowBookForm, RenewBookForm, CreateBookForm, BookRequest
 from .models import Book, Author, BookInstance, Genre
 
 def index(request):
@@ -41,7 +42,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 5
+    paginate_by = 2
  
 class BookDetailView(generic.DetailView):
     model = Book
@@ -77,6 +78,7 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(status__exact='o').order_by('due_back')
+
 @login_required
 @permission_required('catalog.can_mark_returned', raise_exception=True)
 def renew_book_librarian(request, pk):
@@ -167,7 +169,7 @@ def BookBorrow(request, pk):
             book_instance.due_back = form.cleaned_data['due_back']
             book_instance.borrower = request.user
             book_instance.status = 'o'
-
+            book_instance.borrow = 'w'
             book_instance.save()
 
             return HttpResponseRedirect(reverse('my-borrowed'))
@@ -195,3 +197,45 @@ def BookReturn(request, pk):
 
     book_instance.save()
     return HttpResponseRedirect(reverse('my-borrowed'))
+
+class BookInstanceSearch(generic.ListView):
+    model = BookInstance
+    template_name = 'search/bookinstances_search.html'
+
+    def get_queryset(self):  
+        query = self.request.GET.get("borrow")
+        
+        if str.isdigit(query) == 1:
+            object_list = BookInstance.objects.filter( 
+                Q(book__title=query) | Q(borrow_day=query) | Q(due_back=query)
+            )
+            return object_list
+        else: 
+            object_list = BookInstance.objects.filter( 
+                Q(book__title=query) |Q(borrow = query)
+            )
+            return object_list
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
+def change_borrow_request(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    if request.method == 'POST':
+        form = BookRequest(request.POST)
+
+        if form.is_valid():
+            book_instance.borrow = form.cleaned_data['borrow']
+            book_instance.save()
+
+            return HttpResponseRedirect(reverse('all-borrowed'))
+
+    else:
+        form = BookRequest()
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/change_borrow_request.html', context)

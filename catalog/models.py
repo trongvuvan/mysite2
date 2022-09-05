@@ -45,7 +45,11 @@ class BookInstance(models.Model):
         ('a', 'Available'),
         ('r', 'Reserved'),
     )
-
+    BORROW_STATUS = (
+        ('w','waiting'),
+        ('d','denied'),
+        ('e','approved')
+    )
     status = models.CharField(
         max_length=1,
         choices=LOAN_STATUS,
@@ -53,7 +57,13 @@ class BookInstance(models.Model):
         default='m',
         help_text=gettext('Book availability'),
     )
-    
+    borrow = models.CharField(
+        max_length=1,
+        choices=BORROW_STATUS,
+        blank=True,
+        default='w',
+    )
+
     @property
     def is_overdue(self):
         return bool(self.due_back and date.today() > self.due_back)
@@ -82,3 +92,4 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
+

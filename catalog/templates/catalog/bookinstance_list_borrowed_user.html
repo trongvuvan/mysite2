@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% block content %}
 <div>
     <h1><center>{% trans "Borrowed books" %}</center></h1>
@@ -10,7 +12,14 @@
         <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
             <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> 
             {% if bookinst.borrow_day %}({{ bookinst.borrow_day }}) {% endif %}
-            <strong><a>to</a></strong> ({{ bookinst.due_back }})
+            <strong><a>to</a></strong> ({{ bookinst.due_back }})<br>
+            <a> <strong>{% trans "Borrow status" %} </strong> {{bookinst.get_borrow_display}} </a></br>
+            {% if bookinst.borrow == 'e' %}
+            <a href="{% url 'book-return' bookinst.pk %}">{% trans "Return" %}</a>
+            {% endif %}
+            {% if bookinst.borrow != 'e' %}
+            <a href="{% url 'book-return' bookinst.pk %}">{% trans "Cancel" %}</a>
+            {% endif %}
         </li>
         {% endfor %}
         </div>

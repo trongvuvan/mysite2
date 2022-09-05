@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+<h1><center>{% trans "Book Borrow Search Results" %}</center></h1>
+<div class="content-body">
+{% if bookinstance_list %}
+    <ul>
+        {% for bookinst in bookinstance_list %}
+            <li>
+                <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> </br>
+                <a><strong>{% trans "Borrow day : "  %}</strong></a>{{ bookinst.borrow_day }} </br>
+                <a><strong>{% trans "Due back : "  %}</strong></a>{{ bookinst.due_back }}</br>
+                <a><strong>{% trans "Borrower : " %}</strong></a>{{ bookinst.borrower }}</br>
+                {% if perms.catalog.can_mark_returned %} - <a href="{% url 'changes-borrow-status' bookinst.id %}">{% trans "Change status" %}</a>  {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+      <p><center>{% trans "There are no book available." %}</center></p>
+{% endif %}
+</div>
+{% endblock %}
